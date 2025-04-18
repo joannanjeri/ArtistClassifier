@@ -11,7 +11,7 @@ from utils.transforms import get_val_transforms
 
 #config
 TEST_CSV = 'data/test.csv'
-MODEL_PATH = 'models/resnet50_artist_best.pth'
+MODEL_SAVE_PATH = 'models/resnet50_artist.pth'
 BATCH_SIZE = 32
 NUM_WORKERS = 2
 NUM_CLASSES = 51
@@ -63,7 +63,8 @@ def evaluate(model, data_loader, device, label_names):
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.tight_layout()
-    plt.show()
+    plt.savefig('report/confusion_matrix.png', dpi=300)
+    print("confusion matrix saved")
 
 def main():
     print("Loading test dataset...")
@@ -72,7 +73,7 @@ def main():
 
     print("Loading model...")
     model = build_model(NUM_CLASSES)
-    model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
+    model.load_state_dict(torch.load(MODEL_SAVE_PATH, map_location=DEVICE))
 
     #pass label names to evaluate function
     label_names = list(test_dataset.artist_to_label.keys())
