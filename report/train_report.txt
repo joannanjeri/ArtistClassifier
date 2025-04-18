@@ -1,0 +1,37 @@
+This is the current report from the train.py file. The train file intializes a pre-trained ResNet50 and it's training for 15 epochs on 32 batches. It also logs accuracy and loss and saves the model to models/ and also prints out the best validation accuracy. This is the current output for the training set. It took over an hour to iterate through 15 epochs.
+
+Results of train_py:
+
+Loading datasets...
+Building model...
+Training model...
+Epoch [1/15] Train Loss: 2.8544, Train Acc: 0.2859 | Val Loss: 4.9654, Val Acc: 0.1071
+Best model saved! Val Acc: 0.1071
+Epoch [2/15] Train Loss: 1.5027, Train Acc: 0.5892 | Val Loss: 5.9137, Val Acc: 0.1132
+Best model saved! Val Acc: 0.1132
+Epoch [3/15] Train Loss: 0.8671, Train Acc: 0.7557 | Val Loss: 6.8019, Val Acc: 0.1109
+Epoch [4/15] Train Loss: 0.4961, Train Acc: 0.8614 | Val Loss: 7.3697, Val Acc: 0.1163
+Best model saved! Val Acc: 0.1163
+Epoch [5/15] Train Loss: 0.2982, Train Acc: 0.9161 | Val Loss: 7.9199, Val Acc: 0.1102
+Epoch [6/15] Train Loss: 0.1842, Train Acc: 0.9464 | Val Loss: 7.9591, Val Acc: 0.1178
+Best model saved! Val Acc: 0.1178
+Epoch [7/15] Train Loss: 0.1402, Train Acc: 0.9568 | Val Loss: 8.1938, Val Acc: 0.1185
+Best model saved! Val Acc: 0.1185
+Epoch [8/15] Train Loss: 0.1155, Train Acc: 0.9606 | Val Loss: 8.3873, Val Acc: 0.1208
+Best model saved! Val Acc: 0.1208
+Epoch [9/15] Train Loss: 0.1016, Train Acc: 0.9612 | Val Loss: 8.4787, Val Acc: 0.1147
+Epoch [10/15] Train Loss: 0.0847, Train Acc: 0.9663 | Val Loss: 8.7436, Val Acc: 0.1132
+Epoch [11/15] Train Loss: 0.0738, Train Acc: 0.9689 | Val Loss: 8.8888, Val Acc: 0.1147
+Epoch [12/15] Train Loss: 0.0704, Train Acc: 0.9728 | Val Loss: 8.9836, Val Acc: 0.1178
+Epoch [13/15] Train Loss: 0.0680, Train Acc: 0.9673 | Val Loss: 9.0761, Val Acc: 0.1147
+Epoch [14/15] Train Loss: 0.0652, Train Acc: 0.9691 | Val Loss: 9.0957, Val Acc: 0.1178
+Epoch [15/15] Train Loss: 0.0626, Train Acc: 0.9710 | Val Loss: 9.2336, Val Acc: 0.1132
+Training complete! Best val acc: 0.1208
+Model saved to models/resnet50_artist.pth
+
+The model learned training data very well and was near 100% on the training set. The val accuracy dipped early and never recovered and the loss just kept increasing, this could be from the model being wrong on any unseen data. I don't think the model is predicting well on new images. 
+
+Issues to address:
+- not enough data diversity 
+- highly imbalanced classes where some artists may dominate 
+- artist styles being visually similar 
