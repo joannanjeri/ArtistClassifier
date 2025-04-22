@@ -1,6 +1,8 @@
+import os
 import pandas as pd
 from PIL import Image
 from torch.utils.data import Dataset
+
 
 class ArtistDataset(Dataset):
     ''' Dataset to load artist classification data from csv files. each row in the csv file corresponds to an image and its label (artist) '''
@@ -22,7 +24,7 @@ class ArtistDataset(Dataset):
     def __getitem__(self, idx):
         ''' Get an item from the dataset '''
         row = self.data.iloc[idx]
-        img_path = row['file_path']
+        img_path = os.path.normpath(row['file_path'])
         label = row['label']
 
         #load image

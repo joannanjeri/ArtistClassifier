@@ -118,6 +118,8 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
 
+    print(f"using {DEVICE} for training...")
+
     print(f"Building model...")
     model = build_model(NUM_CLASSES)
 
