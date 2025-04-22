@@ -8,6 +8,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from src.dataset import ArtistDataset
 from utils.transforms import get_val_transforms
+from sklearn.utils.multiclass import unique_labels
 
 #config
 TEST_CSV = 'data/test.csv'
@@ -53,7 +54,17 @@ def evaluate(model, data_loader, device, label_names):
 
     #classification report
     print("\n Classification Report:")
-    print(classification_report(all_labels, all_preds, target_names=label_names, zero_division=0))
+    # labels = sorted(list(unique_labels(all_labels, all_preds)))
+    # print(classification_report(all_labels, all_preds, target_names=label_names, zero_division=0))
+
+    labels = sorted(list(unique_labels(all_labels, all_preds)))
+
+    if len(labels) != len(label_names):
+        print(f" Detected {len(label_names)} label names.")
+        print(f" Switching to int class indices for classification report...")
+        print(classification_report(all_labels, all_preds, zero_division=0))
+    else:
+        print(classification_report(all_labels, all_preds, labels=labels, target_names=label_names, zero_division=0))
 
     #confusion matrix
     cm = confusion_matrix(all_labels, all_preds)
@@ -63,8 +74,8 @@ def evaluate(model, data_loader, device, label_names):
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.tight_layout()
-    plt.savefig('report/confusion_matrix.png', dpi=300)
-    print("confusion matrix saved")
+    plt.savefig('report/top15_confusion_matrix.png', dpi=300)
+    print("Confusion matrix saved")
 
 def main():
     print("Loading test dataset...")
@@ -76,7 +87,8 @@ def main():
     model.load_state_dict(torch.load(MODEL_SAVE_PATH, map_location=DEVICE))
 
     #pass label names to evaluate function
-    label_names = list(test_dataset.artist_to_label.keys())
+    # label_names = list(test_dataset.artist_to_label.keys())
+    label_names = [artist for artist, _ in sorted(test_dataset.artist_to_label.items(), key=lambda x: x[1])]
 
     print("Evaluating model...")
     evaluate(model, test_loader, DEVICE, label_names)
@@ -85,4 +97,3 @@ if __name__ == "__main__":
     main()
     print("Running evaluation script...")
     print("Evaluation complete!")
-

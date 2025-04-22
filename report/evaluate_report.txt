@@ -1,0 +1,73 @@
+These are the result for evaluating all 50 classes:
+Loading test dataset...
+Loading model...
+Evaluating model...
+
+ Test Accuracy: 0.23%
+
+ Classification Report:
+ Detected 50 label names.
+ Switching to int class indices for classification report...
+              precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00        21
+           1       0.00      0.00      0.00        44
+           2       0.00      0.00      0.00        10
+           3       0.00      0.00      0.00        39
+           4       0.00      0.00      0.00        28
+           5       0.00      0.00      0.00        29
+           6       0.02      0.01      0.01       105
+           7       0.00      0.00      0.00         7
+           8       0.00      0.00      0.00        98
+           9       0.00      0.00      0.00        11
+          10       0.00      0.00      0.00        38
+          11       0.00      0.00      0.00        66
+          12       0.00      0.00      0.00        18
+          13       0.00      0.00      0.00        47
+          14       0.00      0.00      0.00        39
+          15       0.00      0.00      0.00        50
+          16       0.00      0.00      0.00       132
+          17       0.03      0.04      0.03        26
+          18       0.00      0.00      0.00        13
+          19       0.05      0.03      0.04        29
+          20       0.00      0.00      0.00        28
+          21       0.00      0.00      0.00        10
+          22       0.00      0.00      0.00        21
+          23       0.00      0.00      0.00        19
+          24       0.00      0.00      0.00        21
+          25       0.00      0.00      0.00        14
+          26       0.00      0.00      0.00         6
+          27       0.00      0.00      0.00        18
+          28       0.00      0.00      0.00        27
+          29       0.00      0.00      0.00        14
+          30       0.00      0.00      0.00        18
+          31       0.00      0.00      0.00         5
+          32       0.00      0.00      0.00        15
+          33       0.00      0.00      0.00         7
+          34       0.00      0.00      0.00        19
+          35       0.00      0.00      0.00        15
+          36       0.00      0.00      0.00        12
+          37       0.00      0.00      0.00        21
+          38       0.00      0.00      0.00         8
+          39       0.00      0.00      0.00        20
+          40       0.00      0.00      0.00        36
+          41       0.00      0.00      0.00        25
+          42       0.00      0.00      0.00         4
+          43       0.00      0.00      0.00        13
+          44       0.00      0.00      0.00        13
+          45       0.00      0.00      0.00        16
+          46       0.00      0.00      0.00        10
+          47       0.00      0.00      0.00        11
+          48       0.00      0.00      0.00        12
+          49       0.00      0.00      0.00         9
+          50       0.00      0.00      0.00         0
+
+    accuracy                           0.00      1317
+   macro avg       0.00      0.00      0.00      1317
+weighted avg       0.00      0.00      0.00      1317
+
+confusion matrix saved
+Running evaluation script...
+Evaluation complete!
+
+The model is not learning from the 50 class dataset. There's potentially a severe class imbalance because some artists have <150 images while others have 300+ so there aren't any consistent features. The predicted classes are mostly wrong so I'm going to switch to top 15 artists only for higher accuracy and a cleaner visualization. 

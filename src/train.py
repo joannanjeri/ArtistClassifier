@@ -6,6 +6,7 @@ from torchvision.models import resnet50, ResNet50_Weights
 from torch.utils.data import DataLoader 
 from src.dataset import ArtistDataset
 from utils.transforms import get_train_transforms, get_val_transforms
+import time
 
 #config
 TRAIN_CSV = 'data/train.csv'    
@@ -46,11 +47,13 @@ def train(model, train_loader, val_loader, criterion, optimizer, scheduler, devi
     model.to(device)
     best_val_acc = 0.0      #best validation accuracy
 
+    start_time = time.time()
     for epoch in range(num_epochs):
         model.train()
         running_loss = 0.0
         correct = 0 
         total = 0 
+
 
         for imgs, labels in train_loader:
             imgs, labels = imgs.to(device), labels.to(device)
@@ -102,6 +105,10 @@ def train(model, train_loader, val_loader, criterion, optimizer, scheduler, devi
             print(f"Best model saved! Val Acc: {val_acc:.4f}")
     
     print(f"Training complete! Best val acc: {best_val_acc:.4f}")
+    epoch_time = time.time() - start_time
+    print(f"Total training time: {epoch_time:.2f} seconds")
+    start_time = time.time()
+
 
 def main():
     print("Loading datasets...")
