@@ -15,7 +15,7 @@ TEST_CSV = 'data/test.csv'
 MODEL_SAVE_PATH = 'models/resnet50_artist.pth'
 BATCH_SIZE = 32
 NUM_WORKERS = 2
-NUM_CLASSES = 51
+NUM_CLASSES = 49
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def build_model(num_classes):
@@ -74,7 +74,7 @@ def evaluate(model, data_loader, device, label_names):
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.tight_layout()
-    plt.savefig('report/top15_confusion_matrix.png', dpi=300)
+    plt.savefig('report/50classes_confusion_matrix.png', dpi=300)
     print("Confusion matrix saved")
 
 def main():

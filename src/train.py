@@ -15,7 +15,7 @@ BATCH_SIZE = 32
 NUM_EPOCHS = 15             #num of epochs to train for
 LEARNING_RATE = 1e-4        #rate for the optimizer
 NUM_WORKERS = 2             #num of workers for data loading
-NUM_CLASSES = 51            #number of artists
+NUM_CLASSES = 49            #number of artists
 MODEL_SAVE_PATH = 'models/resnet50_artist.pth'
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -112,6 +112,7 @@ def train(model, train_loader, val_loader, criterion, optimizer, scheduler, devi
 
 def main():
     print("Loading datasets...")
+
     train_dataset = ArtistDataset(TRAIN_CSV, transform=get_train_transforms())
     val_dataset = ArtistDataset(VAL_CSV, transform=get_val_transforms())
 

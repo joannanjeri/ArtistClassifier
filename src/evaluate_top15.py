@@ -74,7 +74,7 @@ def evaluate(model, data_loader, device, label_names):
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.tight_layout()
-    plt.savefig('report/confusion_matrix.png', dpi=300)
+    plt.savefig('report/top15_confusion_matrix.png', dpi=300)
     print("Confusion matrix saved")
 
 def main():

@@ -28,7 +28,11 @@ class ArtistDataset(Dataset):
         label = row['label']
 
         #load image
-        img = Image.open(img_path).convert('RGB')
+        try:
+            img = Image.open(img_path).convert('RGB')
+        except FileNotFoundError:
+            print(f" Skipping missing image: {img_path}")
+            return self.__getitem__((idx + 1) % len(self))
 
         #apply transformations if any
         if self.transform:
