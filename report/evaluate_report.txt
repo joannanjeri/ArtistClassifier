@@ -1,4 +1,5 @@
 These are the result for evaluating all 50 classes:
+
 Loading test dataset...
 Loading model...
 Evaluating model...
@@ -71,3 +72,41 @@ Running evaluation script...
 Evaluation complete!
 
 The model is not learning from the 50 class dataset. There's potentially a severe class imbalance because some artists have <150 images while others have 300+ so there aren't any consistent features. The predicted classes are mostly wrong so I'm going to switch to top 15 artists only for higher accuracy and a cleaner visualization. 
+
+
+These are my results after evaluating the top 15 artists:
+
+Loading test dataset...
+Loading model...
+Evaluating model...
+
+ Test Accuracy: 6.65%
+
+ Classification Report:
+                       precision    recall  f1-score   support
+
+     Vincent_van_Gogh       0.04      0.02      0.02       132
+         Marc_Chagall       0.06      0.14      0.08        36
+        Henri_Matisse       0.00      0.00      0.00        28
+          Edgar_Degas       0.03      0.01      0.01       105
+        Rene_Magritte       0.07      0.14      0.10        29
+        Pablo_Picasso       0.10      0.05      0.06        66
+        Alfred_Sisley       0.03      0.13      0.05        39
+       Francisco_Goya       0.00      0.00      0.00        44
+Pierre-Auguste_Renoir       0.04      0.08      0.05        50
+         Paul_Gauguin       0.02      0.02      0.02        47
+            Paul_Klee       0.00      0.00      0.00        28
+          Andy_Warhol       0.00      0.00      0.00        27
+               Titian       0.52      0.63      0.57        38
+            Rembrandt       0.00      0.00      0.00        39
+    Amedeo_Modigliani       0.00      0.00      0.00        29
+
+             accuracy                           0.07       737
+            macro avg       0.06      0.08      0.06       737
+         weighted avg       0.06      0.07      0.06       737
+
+Confusion matrix saved
+Running evaluation script...
+Evaluation complete!
+
+The overall test accuracy is 6.65% and the best performing class is Titian with 52% precision and 63% recall. Most classes have low precision/recall so the model isn't predicting those classes well at all. 

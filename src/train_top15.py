@@ -9,7 +9,7 @@ from utils.transforms import get_train_transforms, get_val_transforms
 import time
 
 #config
-TRAIN_CSV = 'data/train_top15.csv'    
+TRAIN_CSV = 'data/train_top15_balanced.csv'    
 VAL_CSV = 'data/val_top15.csv'
 BATCH_SIZE = 32
 NUM_EPOCHS = 15             #num of epochs to train for
