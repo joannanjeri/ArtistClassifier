@@ -34,4 +34,64 @@ The model learned training data very well and was near 100% on the training set.
 Issues to address:
 - not enough data diversity 
 - highly imbalanced classes where some artists may dominate 
-- artist styles being visually similar 
+- artist styles being visually similar 4
+
+
+Results of train_top15.py (first attepmt):
+
+Loading datasets...
+Building model...
+Training model...
+Epoch [1/15] Train Loss: 2.2847, Train Acc: 0.3963 | Val Loss: 3.3544, Val Acc: 0.0666
+Best model saved! Val Acc: 0.0666
+Epoch [2/15] Train Loss: 1.1258, Train Acc: 0.7486 | Val Loss: 4.2174, Val Acc: 0.0557
+Epoch [3/15] Train Loss: 0.5286, Train Acc: 0.8714 | Val Loss: 5.2300, Val Acc: 0.0462
+Epoch [4/15] Train Loss: 0.2540, Train Acc: 0.9454 | Val Loss: 5.7251, Val Acc: 0.0530
+Epoch [5/15] Train Loss: 0.1224, Train Acc: 0.9790 | Val Loss: 6.2891, Val Acc: 0.0516
+Epoch [6/15] Train Loss: 0.0737, Train Acc: 0.9895 | Val Loss: 6.5511, Val Acc: 0.0489
+Epoch [7/15] Train Loss: 0.0494, Train Acc: 0.9948 | Val Loss: 6.7449, Val Acc: 0.0503
+Epoch [8/15] Train Loss: 0.0391, Train Acc: 0.9963 | Val Loss: 6.7294, Val Acc: 0.0462
+Epoch [9/15] Train Loss: 0.0284, Train Acc: 0.9979 | Val Loss: 7.0020, Val Acc: 0.0476
+Epoch [10/15] Train Loss: 0.0254, Train Acc: 0.9984 | Val Loss: 7.3076, Val Acc: 0.0489
+Epoch [11/15] Train Loss: 0.0228, Train Acc: 0.9984 | Val Loss: 7.2632, Val Acc: 0.0503
+Epoch [12/15] Train Loss: 0.0203, Train Acc: 0.9974 | Val Loss: 7.2157, Val Acc: 0.0489
+Epoch [13/15] Train Loss: 0.0177, Train Acc: 0.9990 | Val Loss: 7.1819, Val Acc: 0.0489
+Epoch [14/15] Train Loss: 0.0193, Train Acc: 0.9974 | Val Loss: 7.2727, Val Acc: 0.0543
+Epoch [15/15] Train Loss: 0.0156, Train Acc: 0.9979 | Val Loss: 7.3837, Val Acc: 0.0489
+Training complete! Best val acc: 0.0666
+Total training time: 483.71 seconds
+Model saved to models/resnet50_artist_top15.pth
+
+
+The train accuracy start at ~40% increases to ~99% by epoch 15. The val acc peaks early at 6.7% then slowly drops. The val loss kept increasing which could indicate overfitting. The model is learning the training set really well but it's not generalizing to the val set. This could still be a result of imbalanced learning because some artists may have very similar styles making generalizing harder. Maybe it's because of too many frozen layers. Try to unfreeze more layers to fix overfitting. 
+
+
+Results of traning the top 49 again:
+Loading datasets...
+using cuda for training...
+Building model...
+Training model...
+Epoch [1/15] Train Loss: 2.8876, Train Acc: 0.2855 | Val Loss: 5.4599, Val Acc: 0.0041
+Best model saved! Val Acc: 0.0041
+Epoch [2/15] Train Loss: 1.4959, Train Acc: 0.6169 | Val Loss: 6.8790, Val Acc: 0.0066
+Best model saved! Val Acc: 0.0066
+Epoch [3/15] Train Loss: 0.8448, Train Acc: 0.7849 | Val Loss: 7.7540, Val Acc: 0.0082
+Best model saved! Val Acc: 0.0082
+Epoch [4/15] Train Loss: 0.4727, Train Acc: 0.8900 | Val Loss: 8.1904, Val Acc: 0.0099
+Best model saved! Val Acc: 0.0099
+Epoch [5/15] Train Loss: 0.2563, Train Acc: 0.9449 | Val Loss: 8.9491, Val Acc: 0.0090
+Epoch [6/15] Train Loss: 0.1408, Train Acc: 0.9755 | Val Loss: 9.0200, Val Acc: 0.0090
+Epoch [7/15] Train Loss: 0.0931, Train Acc: 0.9896 | Val Loss: 9.3125, Val Acc: 0.0082
+Epoch [8/15] Train Loss: 0.0651, Train Acc: 0.9933 | Val Loss: 9.5231, Val Acc: 0.0082
+Epoch [9/15] Train Loss: 0.0528, Train Acc: 0.9938 | Val Loss: 9.6303, Val Acc: 0.0090
+Epoch [10/15] Train Loss: 0.0348, Train Acc: 0.9977 | Val Loss: 9.7358, Val Acc: 0.0090
+Epoch [11/15] Train Loss: 0.0302, Train Acc: 0.9975 | Val Loss: 10.0435, Val Acc: 0.0082
+Epoch [12/15] Train Loss: 0.0241, Train Acc: 0.9991 | Val Loss: 9.9414, Val Acc: 0.0082
+Epoch [13/15] Train Loss: 0.0206, Train Acc: 0.9993 | Val Loss: 9.9898, Val Acc: 0.0099
+Epoch [14/15] Train Loss: 0.0183, Train Acc: 0.9993 | Val Loss: 10.2444, Val Acc: 0.0074
+Epoch [15/15] Train Loss: 0.0187, Train Acc: 0.9989 | Val Loss: 10.3573, Val Acc: 0.0066
+Training complete! Best val acc: 0.0099
+Total training time: 1189.07 seconds
+Model saved to models/resnet50_artist.pth
+
+The model is able to learn and the training accuracy is near perfect but the val acc and the val loss aren't good. 
